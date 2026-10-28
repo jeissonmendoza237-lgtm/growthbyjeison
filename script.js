@@ -1,7 +1,6 @@
 // ===== Configuración =====
-// Cambia este número por tu WhatsApp (código de país + número, sin + ni espacios).
-// Ejemplo Colombia: 573001234567
-const WHATSAPP_NUMBER = "573000000000";
+// Número de WhatsApp (código de país + número, sin + ni espacios).
+const WHATSAPP_NUMBER = "573204770469";
 
 // ===== Menú móvil =====
 const menuBtn = document.getElementById("menuBtn");
@@ -35,36 +34,6 @@ const revelar = new IntersectionObserver(
   { threshold: 0.15 }
 );
 document.querySelectorAll(".reveal").forEach((el) => revelar.observe(el));
-
-// ===== Contadores animados =====
-function animarContador(el) {
-  const meta = Number(el.dataset.count);
-  const prefijo = el.dataset.prefix || "";
-  const sufijo = el.dataset.suffix || "";
-  const duracion = 1500;
-  const inicio = performance.now();
-
-  function paso(ahora) {
-    const progreso = Math.min((ahora - inicio) / duracion, 1);
-    const valor = Math.floor(meta * (1 - Math.pow(1 - progreso, 3)));
-    el.textContent = prefijo + valor + sufijo;
-    if (progreso < 1) requestAnimationFrame(paso);
-  }
-  requestAnimationFrame(paso);
-}
-
-const contadores = new IntersectionObserver(
-  (entradas) => {
-    entradas.forEach((e) => {
-      if (e.isIntersecting) {
-        animarContador(e.target);
-        contadores.unobserve(e.target);
-      }
-    });
-  },
-  { threshold: 0.6 }
-);
-document.querySelectorAll("[data-count]").forEach((el) => contadores.observe(el));
 
 // ===== Formulario -> WhatsApp =====
 const form = document.getElementById("contactForm");
